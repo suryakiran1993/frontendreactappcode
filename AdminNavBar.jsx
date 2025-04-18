@@ -6,6 +6,9 @@ import ViewManagers from './ViewManagers';
 import ViewCustomers from './ViewCustomers';
 import AdminLogin from './AdminLogin';
 import { useAuth } from '../contextapi/AuthContext';
+import AddProduct from './AddProduct';
+import DisplayProducts from './DisplayProducts';
+import ViewAllProducts from './ViewAllProducts';
 
 export default function AdminNavBar() 
 {
@@ -26,6 +29,15 @@ export default function AdminNavBar()
           <li><Link to="/viewmanagers">View Event Managers</Link></li>
           <li><Link to="/viewallcustomers">View All Customers</Link></li>
 
+          <li className="dropdown">
+            <span>Product▾</span>
+            <ul className="dropdown-menu">
+              <li><Link to="/addproduct">Add</Link></li>
+              <li><Link to="/viewallproducts">View All</Link></li>
+              <li><Link to="/displayproducts">Display</Link></li>
+            </ul>
+          </li>
+
           <li><Link to="/adminlogin" onClick={handleLogout}>Logout</Link></li>
         </ul>
       </nav>
@@ -35,6 +47,10 @@ export default function AdminNavBar()
         <Route path="/addeventmanager" element={<AddManager />} exact />
         <Route path="/viewmanagers" element={<ViewManagers />} exact />
         <Route path="/viewallcustomers" element={<ViewCustomers />} exact />
+
+        <Route path="/addproduct" element={<AddProduct/>} exact />
+        <Route path="/viewallproducts" element={<ViewAllProducts/>} exact />
+        <Route path="/displayproducts" element={<DisplayProducts/>} exact />
 
         <Route path="/adminlogin" element={<AdminLogin />} exact />
       </Routes>
