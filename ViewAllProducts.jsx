@@ -57,7 +57,7 @@ const ViewAllProducts = () => {
                   </a>
                 </td>
                 <td>
-                  <iframe
+                  <img
                     src={`${config.url}/product/displayproductimage?id=${product.id}`}
                     alt="Product"
                     className="table-image"
