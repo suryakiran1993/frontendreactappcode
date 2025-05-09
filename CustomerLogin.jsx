@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import config from '../config';
 import { useAuth } from '../contextapi/AuthContext';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export default function CustomerLogin() {
   const [formData, setFormData] = useState({
@@ -22,10 +23,18 @@ export default function CustomerLogin() {
     setFormData({ ...formData, [id]: value });
   };
 
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
+    setError('');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
+    if (!captchaToken) {
+      setError('Please complete the CAPTCHA.');
+      return;
+    }
 
     try {
       const response = await axios.post(`${config.url}/customer/checkcustomerlogin`, formData);
@@ -75,7 +84,12 @@ export default function CustomerLogin() {
             required
           />
         </div>
-       
+        <div style={{ margin: '10px 0' }}>
+          <ReCAPTCHA
+            sitekey="6Ld0EDQrAAAAACf4-ffFEKLc1duDTy5k1WkCzhsU" // Replace this with your actual reCAPTCHA site key
+            onChange={handleCaptchaChange}
+          />
+        </div>
         <button type="submit" className="button">Login</button>
       </form>
     </div>
