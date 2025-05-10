@@ -8,7 +8,6 @@ export default function Contact() {
     subject: '',
     message: '',
     email: '',
-    mobileno: '',
     location: ''
   });
 
@@ -34,7 +33,6 @@ export default function Contact() {
         subject: '',
         message: '',
         email: '',
-        mobileno: '',
         location: ''
       });
     } catch (err) {
@@ -90,16 +88,6 @@ export default function Contact() {
             type="email"
             id="email"
             value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Mobile No</label>
-          <input
-            type="number"
-            id="mobileno"
-            value={formData.mobileno}
             onChange={handleChange}
             required
           />
